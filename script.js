@@ -4,32 +4,54 @@ let canvasWidth = 500;
 let canvasHeight = 300;
 let Width = 100;
 let Height = 75;
+let points = [];
+let yPos = 0;
+let xPos = 0;
+let numDrops = 100;
 
 function Rain (){
-  fill(225);
+ /* fill(225);
   circle(x, y, 5 );
-    y += 4;
+    y += 4;*/
+  for (let point in points){
+   ellipse(points[point].xPos, points[point].yPos, 5, 5);
+  points[point].yPos += 5;
+  if(points[point].yPos > canvasHeight){
+   points[point].yPos = 0;
+ points[point].xPos = random(0, canvasWidth);
+   }
+ }
 }
 
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
   colorMode(HSB);
-    x = random(0, canvasWidth-Width); 
+   /* x = random(0, canvasWidth-Width);*/
+    for(let i = 0; i < numDrops; i++){
+      xPos = random(0, canvasWidth);
+      yPos = random(0, -1 * canvasHeight);
+      points.push({yPos: yPos, xPos: xPos});
+  }
+
 }
 
 function draw() {
     background(0, 0, 0, 0.653);
   Rain()
-    if (y > width + 25) {
+  console.log(points.length);
+  /*if (y > width + 25) {
       x = random(0, canvasWidth-Width);
       y = random(0, canvasWidth-Width);
       y = -25;
-    }
+    }*/
+
+      
+   
 }
  
 
 
-/*  `
+/*  ` 
         textSize(75)
     text("(👉ﾟヮﾟ)👉", 100, 170) 
     */
